@@ -1,4 +1,4 @@
-package org.pluralsight;
+package org.pluralsight.pluralsight.models;
 
 public class Vehicle
 {

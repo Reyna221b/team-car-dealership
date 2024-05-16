@@ -1,4 +1,10 @@
-package org.pluralsight;
+package org.pluralsight.pluralsight.ui;
+
+
+import org.pluralsight.pluralsight.models.Colors;
+import org.pluralsight.pluralsight.models.Vehicle;
+import org.pluralsight.pluralsight.services.Dealership;
+import org.pluralsight.pluralsight.services.DealershipFileManager;
 
 import java.util.List;
 import java.util.Scanner;

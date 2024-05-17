@@ -4,57 +4,57 @@ import org.pluralsight.models.Contract;
 import org.pluralsight.models.SalesContract;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ContractFileManager
 {
-    public static ArrayList<Contract> loadContract(){
-        ArrayList<Contract> contracts = new ArrayList<>();
-        try(Scanner scanner = new Scanner(new File("file/contracts.csv")))
-        {
-            while (scanner.hasNextLine())
+    public void saveContract(Contract contract){
+
+        private static final String contractCSV = "file/contracts.csv";
+
+
+        try(FileWriter fileWriter = new FileWriter(contractCSV, true);
+            PrintWriter writer = new PrintWriter(fileWriter)
+        ) {
+            String contractType;
+            if(contract instanceof SalesContract)
             {
-                String line = scanner.nextLine();
-                String[] tokens = line.split("\\|");
+                contractType = "SALE";
+                writer.write(String.format("%s|%s|%s|%s|%d|%d|%s|%s|%s|%s|%d|%.2f|%.2f|%.2f|%.2f|%.2f|%s|%.2f|\n",contractType,
+                        contract.getDate(),contract.getCustomerName(),contract.getCustomerEmail(),
+                        contract.getVehicleSold().getVin(),contract.getVehicleSold().getYear(),
+                        contract.getVehicleSold().getMake(),contract.getVehicleSold().getModel(),
+                        contract.getVehicleSold().getVehicleType(),contract.getVehicleSold().getColor(),
+                        contract.getVehicleSold().getOdometer(),contract.getVehicleSold().getPrice(),
+                        ((SalesContract) contract).getSalesTax(),((SalesContract) contract).getRecordingFee(),
+                        ((SalesContract) contract).getProcessingFee(),contract.getTotalPrice(),((SalesContract) contract).isFinance(),
+                        contract.getMonthlyPayment()
+                ));
 
-                String contractType = tokens[0];
-
-                if(contractType.equalsIgnoreCase("sale"))
-                {
-                    String date = tokens[1];
-                    String name = tokens[2];
-                    String email = tokens[3];
-                    int carId = Integer.parseInt(tokens[4]);
-                    int year = Integer.parseInt(tokens[5]);
-                    String make = tokens[6];
-                    String model = tokens[7];
-                    String vehicleType = tokens[8];
-                    String color = tokens[9];
-                    int odometer = Integer.parseInt(tokens[10]);
-                    double price = Double.parseDouble(tokens[11]);
-                    double salesTax = Double.parseDouble(tokens[12]);
-                    double recordingFee = Double.parseDouble(tokens[13]);
-                    double processFee = Double.parseDouble(tokens[14]);
-                    double totalCost = Double.parseDouble(tokens[15]);
-                    boolean isfinanced = Boolean.parseBoolean(tokens[16]);
-                    double monthly = Double.parseDouble(tokens[17]);
-
-                    Contract sale = new SalesContract(date,name,email,carId,)
-                }
-                else
-                {
-
-                }
             }
-        }
-        catch (IOException e)
-        {
+            else {
+                contractType = "LEASE";
+                writer.write(String.format("%s|%s|%s|%s|%d|%d|%s|%s|%s|%s|%d|%.2f|%.2f|%.2f|%.2f|%.2f|%s|%.2f|\n",contractType,
+                        contract.getDate(),contract.getCustomerName(),contract.getCustomerEmail(),
+                        contract.getVehicleSold().getVin(),contract.getVehicleSold().getYear(),
+                        contract.getVehicleSold().getMake(),contract.getVehicleSold().getModel(),
+                        contract.getVehicleSold().getVehicleType(),contract.getVehicleSold().getColor(),
+                        contract.getVehicleSold().getOdometer(),contract.getVehicleSold().getPrice(),
+                        ((SalesContract) contract).getSalesTax(),((SalesContract) contract).getRecordingFee(),
+                        ((SalesContract) contract).getProcessingFee(),contract.getTotalPrice(),((SalesContract) contract).isFinance(),
+                        contract.getMonthlyPayment()
+                ));
 
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
-        return contracts;
     }
 
 }

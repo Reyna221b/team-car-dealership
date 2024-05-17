@@ -1,7 +1,5 @@
 package org.pluralsight.models;
 
-import org.pluralsight.services.Dealership;
-
 public class SalesContract extends Contract
 {
     // variables
@@ -9,10 +7,9 @@ public class SalesContract extends Contract
     private double recordingFee = 100.00;
     private double processingFee;
     private boolean finance;
-    public Vehicle v;
 
     // constructor
-    public SalesContract(String date, String customerName, String customerEmail, int vehicleSold, double totalPrice, double monthlyPayment, double salesTax, double recordingFee, double processingFee, boolean finance) {
+    public SalesContract(String date, String customerName, String customerEmail, Vehicle vehicleSold, double totalPrice, double monthlyPayment, double salesTax, double recordingFee, double processingFee, boolean finance) {
         super(date, customerName, customerEmail, vehicleSold, totalPrice, monthlyPayment);
         this.salesTax = salesTax;
         this.recordingFee = recordingFee;
@@ -22,7 +19,7 @@ public class SalesContract extends Contract
 
     // getters and setters
     public double getSalesTax() {
-        return salesTax = v.getPrice() * 0.05;
+        return salesTax = getVehicleSold().getPrice() * 0.05;
     }
 
     public double getRecordingFee() {
@@ -31,7 +28,7 @@ public class SalesContract extends Contract
 
     public double getProcessingFee() {
 
-        if(v.getPrice() < 10000)
+        if(getVehicleSold().getPrice() < 10000)
         {
             return processingFee = 295.00;
         }
@@ -56,7 +53,7 @@ public class SalesContract extends Contract
     @Override
     public double getTotalPrice()
     {
-        double price = v.getPrice() + getSalesTax() + getRecordingFee() + getProcessingFee();
+        double price = getVehicleSold().getPrice() + getSalesTax() + getRecordingFee() + getProcessingFee();
         return price;
     }
 
@@ -65,9 +62,12 @@ public class SalesContract extends Contract
     {
         if(finance)
         {
-            double fee = (getTotalPrice() > 10000) ? 0.0425 : 0.0525;
+            double interestRate = (getTotalPrice() > 10000) ? 0.0425 : 0.0525;
             double loanLength = (getTotalPrice() > 10000) ?  48 : 24;
-            return (getTotalPrice() * fee * (Math.pow(1 + fee, loanLength)) / (Math.pow(1 + fee, loanLength) - 1));
+            return (getTotalPrice() * interestRate * (Math.pow(1 + interestRate, loanLength)) / (Math.pow(1 + interestRate, loanLength) - 1));
+        }
+        else{
+            return 0;
         }
     }
 }

@@ -6,7 +6,7 @@ public class SalesContract extends Contract
 {
     // variables
     private double salesTax;
-    private double recordingFee;
+    private double recordingFee = 100.00;
     private double processingFee;
     private boolean finance;
     public Vehicle v;
@@ -31,7 +31,7 @@ public class SalesContract extends Contract
 
     public double getProcessingFee() {
 
-        if(v.getPrice() > 1000)
+        if(v.getPrice() < 10000)
         {
             return processingFee = 295.00;
         }
@@ -39,7 +39,6 @@ public class SalesContract extends Contract
         {
             return processingFee = 495.00;
         }
-
     }
 
     public void setProcessingFee(double processingFee) {
@@ -55,15 +54,20 @@ public class SalesContract extends Contract
     }
 
     @Override
-    public double getPrice()
+    public double getTotalPrice()
     {
-
-
+        double price = v.getPrice() + getSalesTax() + getRecordingFee() + getProcessingFee();
+        return price;
     }
 
     @Override
     public double getMonthlyPayment()
     {
-
+        if(finance)
+        {
+            double fee = (getTotalPrice() > 10000) ? 0.0425 : 0.0525;
+            double loanLength = (getTotalPrice() > 10000) ?  48 : 24;
+            return (getTotalPrice() * fee * (Math.pow(1 + fee, loanLength)) / (Math.pow(1 + fee, loanLength) - 1));
+        }
     }
 }

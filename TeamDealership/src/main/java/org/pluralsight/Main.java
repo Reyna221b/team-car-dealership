@@ -1,7 +1,7 @@
 package org.pluralsight;
 
 
-import org.pluralsight.pluralsight.ui.UserInterface;
+import org.pluralsight.ui.UserInterface;
 
 public class Main
 {

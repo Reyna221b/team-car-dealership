@@ -1,13 +1,13 @@
 package org.pluralsight.ui;
 
 
-import org.pluralsight.models.Colors;
-import org.pluralsight.models.SalesContract;
-import org.pluralsight.models.Vehicle;
+import org.pluralsight.models.*;
 import org.pluralsight.services.ContractFileManager;
 import org.pluralsight.services.Dealership;
 import org.pluralsight.services.DealershipFileManager;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -97,10 +97,10 @@ public class UserInterface
         switch (choice)
         {
             case 1:
-                saleVehicle;
+                saleVehicle();
                 break;
             case 2:
-                leaseVehicle;
+                leaseVehicle();
                 break;
             default:
                 System.out.println(Colors.RED + "invalid selection!"+Colors.RESET);
@@ -111,7 +111,9 @@ public class UserInterface
     private void saleVehicle()
     {
         ContractFileManager contractManager = new ContractFileManager();
+        SalesContract sell = null;
         processGetAllVehiclesRequest();
+
 
         while (true)
         {
@@ -141,10 +143,41 @@ public class UserInterface
             System.out.println("Enter your Email: ");
             String email = userInput.nextLine().strip();
 
-            SalesContract sale = new SalesContract();
 
+            System.out.println("Want to Finance (Yes/No): ");
+            try{
+                String financed = userInput.nextLine().strip();
+                if(financed.equalsIgnoreCase("yes")){
+                    sell.setFinance(true);
+                }
+                else {
+                    sell.setFinance(false);
+                }
+            }catch(Exception e){
+                System.out.println(Colors.RED + "invalid input!"+Colors.RESET);
+            }
+
+
+
+            double total = sell.getTotalPrice();
+            double monthly = sell.getMonthlyPayment();
+            double tax = sell.getSalesTax();
+
+            SalesContract sale = new SalesContract( getCurrentDate(),customer,email,vehicleSold,
+                    total,monthly,tax, sell.getRecordingFee(), sell.getProcessingFee(),sell.isFinance());
+
+            contractManager.saveContract(sale);
+            dealership.removeVehicle(vehicleSold);
+            System.out.println("CONGRATS WE HAVE SOLD A VEHICLE!!!");
+            break;
         }
 
+    }
+
+    private String getCurrentDate(){
+        SimpleDateFormat formatDate = new SimpleDateFormat("yyyyMMdd");
+        Date todayDate = new Date();
+        return formatDate.format(todayDate);
     }
 
     public void processGetByPriceRequest(){

@@ -23,6 +23,7 @@ public class ContractFileManager
             String contractType;
             if(contract instanceof SalesContract)
             {
+                String finaced = (((SalesContract) contract).isFinance()) ? "YES": "NO";
                 contractType = "SALE";
                 writer.write(String.format("%s|%s|%s|%s|%d|%d|%s|%s|%s|%s|%d|%.2f|%.2f|%.2f|%.2f|%.2f|%s|%.2f|\n",contractType,
                         contract.getDate(),contract.getCustomerName(),contract.getCustomerEmail(),
@@ -31,7 +32,7 @@ public class ContractFileManager
                         contract.getVehicleSold().getVehicleType(),contract.getVehicleSold().getColor(),
                         contract.getVehicleSold().getOdometer(),contract.getVehicleSold().getPrice(),
                         ((SalesContract) contract).getSalesTax(),((SalesContract) contract).getRecordingFee(),
-                        ((SalesContract) contract).getProcessingFee(),contract.getTotalPrice(),((SalesContract) contract).isFinance(),
+                        ((SalesContract) contract).getProcessingFee(),contract.getTotalPrice(),finaced,
                         contract.getMonthlyPayment()
                 ));
 

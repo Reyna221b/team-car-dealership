@@ -1,12 +1,13 @@
 package org.pluralsight.ui;
 
-
 import org.pluralsight.models.*;
 import org.pluralsight.services.ContractFileManager;
 import org.pluralsight.services.Dealership;
 import org.pluralsight.services.DealershipFileManager;
 
+import java.rmi.dgc.Lease;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -79,8 +80,6 @@ public class UserInterface
                     default:
                         System.out.println("Invalid Input.");
                 }
-
-
             } catch (Exception ex) {
                 System.out.println(Colors.RED + "invalid selection!"+Colors.RESET);
             }
@@ -114,7 +113,6 @@ public class UserInterface
         SalesContract sell = null;
         processGetAllVehiclesRequest();
 
-
         while (true)
         {
             System.out.println("Enter the vin number of the Vehicle you would like to Sell: ");
@@ -129,7 +127,6 @@ public class UserInterface
                     vehicleSold = v;
                     break;
                 }
-
             }
             if (vehicleSold == null)
             {
@@ -137,7 +134,7 @@ public class UserInterface
                 continue;
             }
 
-            System.out.println("Enter name: ");
+            System.out.println("Enter Name: ");
             String customer = userInput.nextLine().strip();
 
             System.out.println("Enter your Email: ");
@@ -157,8 +154,6 @@ public class UserInterface
                 System.out.println(Colors.RED + "invalid input!"+Colors.RESET);
             }
 
-
-
             double total = sell.getTotalPrice();
             double monthly = sell.getMonthlyPayment();
             double tax = sell.getSalesTax();
@@ -171,7 +166,62 @@ public class UserInterface
             System.out.println("CONGRATS WE HAVE SOLD A VEHICLE!!!");
             break;
         }
+    }
 
+    private void leaseVehicle()
+    {
+        ContractFileManager contractManager = new ContractFileManager();
+        LeaseContract leased = null;
+        int yearMinusThree = getCurrentYearMinusThree();
+        processGetAllVehiclesRequest();
+
+        while (true)
+        {
+            System.out.println("Enter the vin number of the Vehicle you would like to Lease: ");
+            int vin = Integer.parseInt(userInput.nextLine().strip());
+
+            Vehicle vehicleLeased = null;
+
+            for (Vehicle v : dealership.getAllVehicles())
+            {
+                if (v.getVin() == vin)
+                {
+                    if (v.getYear() > yearMinusThree)
+                    {
+                        vehicleLeased = v;
+                        break;
+                    } else
+                    {
+                        System.out.println("Sorry this Vehicle can not be Leased. \n Reason: Car is older than 3 years. ");
+                    }
+                }
+            }
+            if (vehicleLeased == null)
+            {
+                System.out.println("Vin number: " + vin + " not found. ");
+                continue;
+            }
+
+            System.out.println("Enter Name: ");
+            String customer = userInput.nextLine().strip();
+
+            System.out.println("Enter your Email: ");
+            String email = userInput.nextLine().strip();
+
+            LeaseContract leaseContract = new LeaseContract(getCurrentDate(), customer, email, vehicleLeased,
+                    leased.getTotalPrice(), leased.getMonthlyPayment(), leased.getLeaseFee(), leased.getEndingValue());
+
+            contractManager.saveContract(leaseContract);
+            dealership.removeVehicle(vehicleLeased);
+            System.out.println("YAY VEHICLE HAS BEEN LEASED!! ");
+        }
+    }
+
+    private int getCurrentYearMinusThree()
+    {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate threeYearsAgo = currentDate.minusYears(3);
+        return threeYearsAgo.getYear();
     }
 
     private String getCurrentDate(){

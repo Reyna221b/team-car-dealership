@@ -1,4 +1,7 @@
-package org.pluralsight;
+package org.pluralsight.pluralsight;
+
+
+import org.pluralsight.pluralsight.ui.UserInterface;
 
 public class Main
 {

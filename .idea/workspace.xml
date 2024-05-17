@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc58747e-38b8-4d42-b9f3-010a8fd8e2f7" name="Changes" comment="" />
+    <list default="true" id="fc58747e-38b8-4d42-b9f3-010a8fd8e2f7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamDealership/src/main/java/org/pluralsight/pluralsight/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamDealership/src/main/java/org/pluralsight/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamDealership/src/main/java/org/pluralsight/pluralsight/models/Colors.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamDealership/src/main/java/org/pluralsight/models/Colors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamDealership/src/main/java/org/pluralsight/pluralsight/models/Contract.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamDealership/src/main/java/org/pluralsight/models/Contract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamDealership/src/main/java/org/pluralsight/pluralsight/models/LeaseContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamDealership/src/main/java/org/pluralsight/models/LeaseContract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamDealership/src/main/java/org/pluralsight/pluralsight/models/SalesContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamDealership/src/main/java/org/pluralsight/models/SalesContract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamDealership/src/main/java/org/pluralsight/pluralsight/models/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamDealership/src/main/java/org/pluralsight/models/Vehicle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamDealership/src/main/java/org/pluralsight/pluralsight/services/Dealership.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamDealership/src/main/java/org/pluralsight/services/Dealership.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamDealership/src/main/java/org/pluralsight/pluralsight/services/DealershipFileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamDealership/src/main/java/org/pluralsight/services/DealershipFileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamDealership/src/main/java/org/pluralsight/pluralsight/ui/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamDealership/src/main/java/org/pluralsight/ui/UserInterface.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,9 +22,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Reyna221b&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Reyna221b/team-car-dealership.git&quot;,
+    &quot;accountId&quot;: &quot;0e8f04ce-43ef-446f-a37d-945f5ff2b357&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2gZAs63upICEYXTIwrHkebwTeuK" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -23,9 +47,18 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/florpreciado/Pluralsight/team-car-dealership"
+    "last_opened_file_path": "E:/PluralSight/team-car-dealership/TeamDealership",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "advanced.settings"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\PluralSight\team-car-dealership\TeamDealership\src\main\java\org\pluralsight" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

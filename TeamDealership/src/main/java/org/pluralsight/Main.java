@@ -1,4 +1,4 @@
-package org.pluralsight.pluralsight;
+package org.pluralsight;
 
 
 import org.pluralsight.pluralsight.ui.UserInterface;

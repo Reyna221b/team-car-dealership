@@ -1,15 +1,18 @@
-package org.pluralsight.pluralsight.models;
+package org.pluralsight.models;
+
+import org.pluralsight.services.Dealership;
 
 public class SalesContract extends Contract
 {
     // variables
-    private final double salesTax;
-    private final double recordingFee;
+    private double salesTax;
+    private double recordingFee;
     private double processingFee;
     private boolean finance;
+    public Vehicle v;
 
     // constructor
-    public SalesContract(String date, String customerName, String customerEmail, String vehicleSold, double totalPrice, double monthlyPayment, double salesTax, double recordingFee, double processingFee, boolean finance) {
+    public SalesContract(String date, String customerName, String customerEmail, int vehicleSold, double totalPrice, double monthlyPayment, double salesTax, double recordingFee, double processingFee, boolean finance) {
         super(date, customerName, customerEmail, vehicleSold, totalPrice, monthlyPayment);
         this.salesTax = salesTax;
         this.recordingFee = recordingFee;
@@ -19,7 +22,7 @@ public class SalesContract extends Contract
 
     // getters and setters
     public double getSalesTax() {
-        return salesTax;
+        return salesTax = v.getPrice() * 0.05;
     }
 
     public double getRecordingFee() {
@@ -28,11 +31,15 @@ public class SalesContract extends Contract
 
     public double getProcessingFee() {
 
-        if(Vehicle.getPrice)
+        if(v.getPrice() > 1000)
         {
-
+            return processingFee = 295.00;
         }
-        return processingFee;
+        else
+        {
+            return processingFee = 495.00;
+        }
+
     }
 
     public void setProcessingFee(double processingFee) {
@@ -50,6 +57,7 @@ public class SalesContract extends Contract
     @Override
     public double getPrice()
     {
+
 
     }
 

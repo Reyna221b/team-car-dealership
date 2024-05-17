@@ -2,7 +2,9 @@ package org.pluralsight.ui;
 
 
 import org.pluralsight.models.Colors;
+import org.pluralsight.models.SalesContract;
 import org.pluralsight.models.Vehicle;
+import org.pluralsight.services.ContractFileManager;
 import org.pluralsight.services.Dealership;
 import org.pluralsight.services.DealershipFileManager;
 
@@ -34,6 +36,7 @@ public class UserInterface
                 System.out.println("[7] - List All Vehicles");
                 System.out.println("[8] - Add a vehicle");
                 System.out.println("[9] - Remove a Vehicle");
+                System.out.println("[10] - Sell/Lease a Vehicle");
                 System.out.println(Colors.RED + "[99] - Quit"+ Colors.RESET);
                 System.out.println(Colors.CYAN+ "-".repeat(30));
                 System.out.print(Colors.RESET);
@@ -68,6 +71,9 @@ public class UserInterface
                     case 9:
                         processRemoveVehicleRequest();
                         break;
+                    case 10:
+                        sellOrLeaseOption();
+                        break;
                     case 99:
                         return;
                     default:
@@ -78,6 +84,65 @@ public class UserInterface
             } catch (Exception ex) {
                 System.out.println(Colors.RED + "invalid selection!"+Colors.RESET);
             }
+        }
+
+    }
+
+    private void sellOrLeaseOption()
+    {
+        System.out.println("[1] - Sell a Vehicle");
+        System.out.println("[2] - Lease a Vehicle");
+        int choice = Integer.parseInt(userInput.nextLine().strip());
+
+        switch (choice)
+        {
+            case 1:
+                saleVehicle;
+                break;
+            case 2:
+                leaseVehicle;
+                break;
+            default:
+                System.out.println(Colors.RED + "invalid selection!"+Colors.RESET);
+                break;
+        }
+    }
+
+    private void saleVehicle()
+    {
+        ContractFileManager contractManager = new ContractFileManager();
+        processGetAllVehiclesRequest();
+
+        while (true)
+        {
+            System.out.println("Enter the vin number of the Vehicle you would like to Sell: ");
+            int vin = Integer.parseInt(userInput.nextLine().strip());
+
+            Vehicle vehicleSold = null;
+
+            for (Vehicle v : dealership.getAllVehicles())
+            {
+                if (v.getVin() == vin)
+                {
+                    vehicleSold = v;
+                    break;
+                }
+
+            }
+            if (vehicleSold == null)
+            {
+                System.out.println("Vin number: " + vin + " not found. ");
+                continue;
+            }
+
+            System.out.println("Enter name: ");
+            String customer = userInput.nextLine().strip();
+
+            System.out.println("Enter your Email: ");
+            String email = userInput.nextLine().strip();
+
+            SalesContract sale = new SalesContract();
+
         }
 
     }

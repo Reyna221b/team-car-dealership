@@ -1,6 +1,7 @@
 package org.pluralsight.services;
 
 import org.pluralsight.models.Contract;
+import org.pluralsight.models.LeaseContract;
 import org.pluralsight.models.SalesContract;
 
 import java.io.File;
@@ -14,8 +15,7 @@ public class ContractFileManager
 {
     public void saveContract(Contract contract){
 
-        private static final String contractCSV = "file/contracts.csv";
-
+        String contractCSV = "file/contracts.csv";
 
         try(FileWriter fileWriter = new FileWriter(contractCSV, true);
             PrintWriter writer = new PrintWriter(fileWriter)
@@ -36,7 +36,7 @@ public class ContractFileManager
                 ));
 
             }
-            else {
+            else if (contract instanceof LeaseContract){
                 contractType = "LEASE";
                 writer.write(String.format("%s|%s|%s|%s|%d|%d|%s|%s|%s|%s|%d|%.2f|%.2f|%.2f|%.2f|%.2f|%s|%.2f|\n",contractType,
                         contract.getDate(),contract.getCustomerName(),contract.getCustomerEmail(),
@@ -44,12 +44,12 @@ public class ContractFileManager
                         contract.getVehicleSold().getMake(),contract.getVehicleSold().getModel(),
                         contract.getVehicleSold().getVehicleType(),contract.getVehicleSold().getColor(),
                         contract.getVehicleSold().getOdometer(),contract.getVehicleSold().getPrice(),
-                        ((SalesContract) contract).getSalesTax(),((SalesContract) contract).getRecordingFee(),
-                        ((SalesContract) contract).getProcessingFee(),contract.getTotalPrice(),((SalesContract) contract).isFinance(),
-                        contract.getMonthlyPayment()
+                        ((LeaseContract) contract).getEndingValue(), ((LeaseContract) contract).getLeaseFee(),
+                        contract.getTotalPrice(), contract.getMonthlyPayment()
                 ));
 
             }
+            writer.flush();
 
         } catch (IOException e) {
             throw new RuntimeException(e);

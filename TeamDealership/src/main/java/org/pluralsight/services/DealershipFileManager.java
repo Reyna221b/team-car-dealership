@@ -1,7 +1,6 @@
 package org.pluralsight.services;
 
 import org.pluralsight.models.Vehicle;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -10,7 +9,6 @@ import java.util.Scanner;
 
 public class DealershipFileManager
 {
-
     public Dealership getDealership()
     {
         Dealership dealership = null;
@@ -19,11 +17,9 @@ public class DealershipFileManager
         try (FileReader fileReader = new FileReader(file);
              Scanner scanner = new Scanner(fileReader)
         ) {
-
             String dealerLine = scanner.nextLine();
             Scanner lineScanner1 = new Scanner(dealerLine);
             lineScanner1.useDelimiter("\\|");
-
 
             String dealershipName = lineScanner1.next();
             String dealershipAddress = lineScanner1.next();
@@ -39,7 +35,7 @@ public class DealershipFileManager
             }
 
         } catch (IOException ex) {
-            System.out.println("Error reading file or somethin");
+            System.out.println("Error reading file or somethin... ");
         }
         return dealership;
     }
@@ -63,7 +59,6 @@ public class DealershipFileManager
         return vehicleEntry;
     }
 
-
     public void saveDealership (Dealership dealership)
         {
             try (FileWriter writer = new FileWriter("files/inventory.csv")) {
@@ -76,9 +71,7 @@ public class DealershipFileManager
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
         }
-
     }
 
 

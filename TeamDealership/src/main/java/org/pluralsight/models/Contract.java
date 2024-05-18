@@ -8,7 +8,6 @@ public abstract class Contract
     private String customerEmail;
     private Vehicle vehicleSold;
 
-
     // constructor
     public Contract(String date, String customerName, String customerEmail, Vehicle vehicleSold ) {
         this.date = date;
@@ -53,5 +52,4 @@ public abstract class Contract
     public abstract double getTotalPrice();
 
     public abstract double getMonthlyPayment();
-
 }

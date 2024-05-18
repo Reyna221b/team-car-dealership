@@ -4,7 +4,6 @@ import org.pluralsight.models.*;
 import org.pluralsight.services.ContractFileManager;
 import org.pluralsight.services.Dealership;
 import org.pluralsight.services.DealershipFileManager;
-
 import java.rmi.dgc.Lease;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -22,26 +21,49 @@ public class UserInterface
 
     public void display(){
         init();
-        while (true){
+        while (true)
+        {
             try{
                 System.out.println(Colors.CYAN);
-                System.out.println("\t\tHome Screen");
-                System.out.println("-".repeat(30));
+                // let the user know what type of app they are about to use
+                System.out.println();
+                System.out.println("Car dealership loading...  \uD83D\uDE97\uD83D\uDCA8");
+
+                // prompt the user for their first name for a more personalized experience
+                System.out.println();
+                System.out.println("Enter your first name to log in: ");
+                String userName = userInput.nextLine().trim().toUpperCase();
+
+                // greet the user
+                System.out.println(Colors.CYAN);
+                System.out.println("_".repeat(65));
+                System.out.println();
+                System.out.println("                           Hi, " + userName + " \uD83D\uDC4B");
+                System.out.println("              Welcome to \uD83D\uDC51 Queen's Motors! \uD83D\uDE99\uD83D\uDCA8");
+                System.out.println();
+                System.out.println("_".repeat(65));
+
+                System.out.println();
+                System.out.println("\t\t                  Home Screen");
+                System.out.println();
+                System.out.println("-".repeat(65));
                 System.out.println("Find Vehicles by: ");
+                System.out.println();
                 System.out.println("[1] - Price Range");
-                System.out.println("[2] - Make/Model");
+                System.out.println("[2] - Make / Model");
                 System.out.println("[3] - Year");
                 System.out.println("[4] - Color");
                 System.out.println("[5] - Mileage Range");
                 System.out.println("[6] - Type(car, suv, truck, van)");
                 System.out.println("[7] - List All Vehicles");
-                System.out.println("[8] - Add a vehicle");
+                System.out.println("[8] - Add a Vehicle");
                 System.out.println("[9] - Remove a Vehicle");
-                System.out.println("[10] - Sell/Lease a Vehicle");
+                System.out.println("[10] - Sell / Lease a Vehicle");
                 System.out.println(Colors.RED + "[99] - Quit"+ Colors.RESET);
-                System.out.println(Colors.CYAN+ "-".repeat(30));
+                System.out.println();
+                System.out.println(Colors.CYAN+ "-".repeat(65));
                 System.out.print(Colors.RESET);
-                System.out.print("Enter your choice: ");
+                System.out.print(Colors.CYAN + "Enter your choice " + userName + ": ");
                 int choice = Integer.parseInt(userInput.nextLine().strip());
 
                 switch (choice) {
@@ -76,6 +98,8 @@ public class UserInterface
                         sellOrLeaseOption();
                         break;
                     case 99:
+                        System.out.println();
+                        System.out.println("Goodbye for now " + userName + "❗\uFE0F \uD83D\uDC4B ");
                         return;
                     default:
                         System.out.println("Invalid Input.");
@@ -84,11 +108,17 @@ public class UserInterface
                 System.out.println(Colors.RED + "invalid selection!"+Colors.RESET);
             }
         }
-
     }
 
     private void sellOrLeaseOption()
     {
+        System.out.println();
+        System.out.println("-".repeat(65));
+        System.out.println();
+        System.out.println("                      \uD83D\uDCB2 Sell or Lease");
+        System.out.println();
+        System.out.println("-".repeat(65));
+
         System.out.println("[1] - Sell a Vehicle");
         System.out.println("[2] - Lease a Vehicle");
         int choice = Integer.parseInt(userInput.nextLine().strip());
@@ -102,7 +132,7 @@ public class UserInterface
                 leaseVehicle();
                 break;
             default:
-                System.out.println(Colors.RED + "invalid selection!"+Colors.RESET);
+                System.out.println(Colors.RED + "Invalid selection!"+Colors.RESET);
                 break;
         }
     }
@@ -114,6 +144,7 @@ public class UserInterface
 
         while (true)
         {
+            System.out.println();
             System.out.print("Enter the vin number of the Vehicle you would like to Sell: ");
             int vin = Integer.parseInt(userInput.nextLine().strip());
 
@@ -156,18 +187,15 @@ public class UserInterface
             double salesTax = vehicleSold.getPrice() * 0.05;
             double totalPrice = vehicleSold.getPrice() + salesTax + processingFee;
 
-
             SalesContract sale = new SalesContract(getCurrentDate(), customer, email, vehicleSold,
                     totalPrice, salesTax, recordFee, processingFee, finance);
 
-
             contractManager.saveContract(sale);
             dealership.removeVehicle(vehicleSold);
-            System.out.println("CONGRATS WE HAVE SOLD A VEHICLE!!!");
+            System.out.println("CONGRATS WE HAVE SOLD A VEHICLE❗\uFE0F");
             break;
         }
     }
-
 
     private void leaseVehicle()
     {
@@ -177,6 +205,7 @@ public class UserInterface
 
         while (true)
         {
+            System.out.println();
             System.out.print("Enter the vin number of the Vehicle you would like to Lease: ");
             int vin = Integer.parseInt(userInput.nextLine().strip());
 
@@ -217,7 +246,7 @@ public class UserInterface
 
             contractManager.saveContract(leaseContract);
             dealership.removeVehicle(vehicleLeased);
-            System.out.println("YAY VEHICLE HAS BEEN LEASED!! ");
+            System.out.println("YAY VEHICLE HAS BEEN LEASED❗\uFE0F");
             break;
         }
     }
@@ -239,14 +268,22 @@ public class UserInterface
         int max =0;
         int min = 0;
         try{
+            System.out.println();
+            System.out.println("-".repeat(65));
+            System.out.println();
+            System.out.println("                      Search by Price Range");
+            System.out.println();
+            System.out.println("-".repeat(65));
+
             System.out.print("Min. Price: ");
             min = Integer.parseInt(userInput.nextLine().strip());
             System.out.print("Max. Price: ");
             max = Integer.parseInt(userInput.nextLine().strip());
 
         }catch(Exception e){
-            System.out.println(Colors.RED + "invalid selection!"+Colors.RESET);
+            System.out.println(Colors.RED + "Invalid selection!" + Colors.RESET);
         }
+
         List<Vehicle> price = dealership.getVehicleByPrice(min, max);
         displayVehicles(price);
     }
@@ -255,6 +292,12 @@ public class UserInterface
         String make = null;
         String model = null;
         try {
+            System.out.println();
+            System.out.println("-".repeat(65));
+            System.out.println();
+            System.out.println("                      Search by Make/Model");
+            System.out.println();
+            System.out.println("-".repeat(65));
 
             System.out.print("Vehicle Make:  ");
             make = userInput.nextLine().strip().toLowerCase();
@@ -274,6 +317,13 @@ public class UserInterface
         int max =0;
         int min = 0;
         try{
+            System.out.println();
+            System.out.println("-".repeat(65));
+            System.out.println();
+            System.out.println("                        Search by Year");
+            System.out.println();
+            System.out.println("-".repeat(65));
+
             System.out.print("Min. Year: ");
             min = Integer.parseInt(userInput.nextLine().strip());
             System.out.print("Max. Year: ");
@@ -281,6 +331,7 @@ public class UserInterface
         }catch(Exception e){
             System.out.println(Colors.RED + "invalid selection!"+Colors.RESET);
         }
+
         List<Vehicle> year = dealership.getVehicleByYear(min, max);
         displayVehicles(year);
     }
@@ -288,6 +339,12 @@ public class UserInterface
     public void processGetByColorRequest(){
         String carColor = null;
         try {
+            System.out.println();
+            System.out.println("-".repeat(65));
+            System.out.println();
+            System.out.println("                       \uD83C\uDFA8 Search by Color");
+            System.out.println();
+            System.out.println("-".repeat(65));
 
             System.out.print("Vehicle Color:  ");
             carColor = userInput.nextLine().strip();
@@ -305,22 +362,35 @@ public class UserInterface
         int max =0;
         int min = 0;
         try{
+            System.out.println();
+            System.out.println("-".repeat(65));
+            System.out.println();
+            System.out.println("                        Search by Mileage");
+            System.out.println();
+            System.out.println("-".repeat(65));
+
             System.out.print("Min. Mileage: ");
             min = Integer.parseInt(userInput.nextLine().strip());
             System.out.print("Max. Mileage: ");
             max = Integer.parseInt(userInput.nextLine().strip());
         }catch(Exception e){
-            System.out.println(Colors.RED + "invalid selection!"+Colors.RESET);
+            System.out.println(Colors.RED + "invalid selection!" + Colors.RESET);
         }
+
         List<Vehicle>range = dealership.getVehicleByMileage(min, max);
         displayVehicles(range);
-
     }
 
     public void processGetByVehicleTypeRequest()
     {
         String type = null;
         try {
+            System.out.println();
+            System.out.println("-".repeat(65));
+            System.out.println();
+            System.out.println("              \uD83D\uDEFB Search by Car, SUV, Truck, Van \uD83D\uDE98");
+            System.out.println();
+            System.out.println("-".repeat(65));
 
             System.out.print("Vehicle Type:  ");
             type = userInput.nextLine().strip();
@@ -332,12 +402,17 @@ public class UserInterface
 
         List<Vehicle> types = dealership.getVehicleByType(type);
         displayVehicles(types);
-
     }
 
     public void processAddVehicleRequest()
     {
         try{
+            System.out.println();
+            System.out.println("-".repeat(65));
+            System.out.println();
+            System.out.println("                        ➕ Add a Vehicle");
+            System.out.println();
+            System.out.println("-".repeat(65));
 
             System.out.print("Please enter the vin: ");
             int vin = Integer.parseInt(userInput.nextLine().strip());
@@ -354,7 +429,6 @@ public class UserInterface
             System.out.print("Enter the color: ");
             String color = userInput.nextLine().strip();
 
-
             System.out.print("Enter the odometer: ");
             int odometer = Integer.parseInt(userInput.nextLine().strip());
             System.out.print("Enter the price: ");
@@ -365,13 +439,11 @@ public class UserInterface
             dealership.addVehicle(vehicle);
             fileManager.saveDealership(dealership);
 
-            System.out.println("\nVehicle added successfully. ");
-
+            System.out.println("\nVehicle added successfully❗\uFE0F ");
         }
         catch (Exception e){
             System.out.println(Colors.RED + "invalid input!" + Colors.RESET);
         }
-
     }
 
     public void processRemoveVehicleRequest(){
@@ -379,6 +451,13 @@ public class UserInterface
         while(true){
 
             try{
+                System.out.println();
+                System.out.println("-".repeat(65));
+                System.out.println();
+                System.out.println("                      ➖ Remove a Vehicle");
+                System.out.println();
+                System.out.println("-".repeat(65));
+
                 System.out.print("Please enter the vin: ");
                 int removeVin = Integer.parseInt(userInput.nextLine().strip());
                 boolean removed = false;
@@ -392,7 +471,7 @@ public class UserInterface
 
                 if (removed) {
                     fileManager.saveDealership(dealership);
-                    System.out.println("\nVehicle removed successfully!");
+                    System.out.println("\nVehicle removed successfully❗\uFE0F");
                 } else {
                     System.out.println("Vehicle with VIN " + removeVin + " not found.");
                 }
@@ -402,11 +481,14 @@ public class UserInterface
                 e.printStackTrace();
             }
         }
-
-
     }
 
     private void displayVehicles(List<Vehicle>vehicles){
+
+        System.out.println();
+        System.out.println("-".repeat(125));
+        System.out.println();
+        System.out.println("                                                        All Vehicles");
 
         System.out.println("\n"+"-".repeat(125));
         System.out.printf("%-15s  %-14s  %-15s  %-15s  %-14s  %-15s  %-13s  %-15s\n",
@@ -422,16 +504,15 @@ public class UserInterface
         }
     }
 
-    private void init(){
-
+    private void init()
+    {
         fileManager = new DealershipFileManager();
         this.dealership = fileManager.getDealership();
-
     }
 
-    public void processGetAllVehiclesRequest(){
+    public void processGetAllVehiclesRequest()
+    {
         vehicleList = dealership.getAllVehicles();
         displayVehicles(vehicleList);
-
     }
 }

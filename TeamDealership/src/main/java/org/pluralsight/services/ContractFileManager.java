@@ -3,15 +3,12 @@ package org.pluralsight.services;
 import org.pluralsight.models.Contract;
 import org.pluralsight.models.LeaseContract;
 import org.pluralsight.models.SalesContract;
-
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class ContractFileManager
 {
     public void saveContract(Contract contract){
-
-        //String contractCSV = "file/contracts.csv";
 
         try(FileWriter writer = new FileWriter("files/contracts.csv", true);
 
@@ -47,11 +44,8 @@ public class ContractFileManager
 
             }
             writer.flush();
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
-
 }

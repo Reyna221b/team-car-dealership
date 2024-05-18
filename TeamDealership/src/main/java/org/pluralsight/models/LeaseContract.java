@@ -11,7 +11,6 @@ public class LeaseContract extends Contract
         super(date, customerName, customerEmail, vehicleSold);
         this.leaseFee = leaseFee;
         this.endingValue = endingValue;
-
     }
 
     public double getEndingValue()
@@ -33,6 +32,7 @@ public class LeaseContract extends Contract
     {
         this.leaseFee = leaseFee;
     }
+
     @Override
     public double getTotalPrice()
     {

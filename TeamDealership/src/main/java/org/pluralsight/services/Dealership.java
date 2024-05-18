@@ -1,9 +1,6 @@
 package org.pluralsight.services;
 
-
-
 import org.pluralsight.models.Vehicle;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +17,6 @@ public class Dealership
         this.name = name;
         this.address = address;
         this.phone = phone;
-
         this.inventory = new ArrayList<>();
     }
 
@@ -53,7 +49,6 @@ public class Dealership
     {
         this.address = address;
     }
-
 
     public List<Vehicle> getVehicleByPrice(double min, double max){
         return inventory.stream()

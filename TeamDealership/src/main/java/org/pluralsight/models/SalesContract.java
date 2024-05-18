@@ -16,7 +16,6 @@ public class SalesContract extends Contract
         this.recordingFee = recordingFee;
         this.processingFee = processingFee;
         this.finance = finance;
-
     }
 
     // getters and setters
@@ -66,6 +65,4 @@ public class SalesContract extends Contract
             return 0;
         }
     }
-
-
 }

@@ -1,7 +1,5 @@
 package org.pluralsight.services;
 
-
-
 import org.pluralsight.models.Vehicle;
 
 import java.io.File;

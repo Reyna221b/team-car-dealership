@@ -110,12 +110,11 @@ public class UserInterface
     private void saleVehicle()
     {
         ContractFileManager contractManager = new ContractFileManager();
-        SalesContract sell = null;
         processGetAllVehiclesRequest();
 
         while (true)
         {
-            System.out.println("Enter the vin number of the Vehicle you would like to Sell: ");
+            System.out.print("Enter the vin number of the Vehicle you would like to Sell: ");
             int vin = Integer.parseInt(userInput.nextLine().strip());
 
             Vehicle vehicleSold = null;
@@ -134,32 +133,33 @@ public class UserInterface
                 continue;
             }
 
-            System.out.println("Enter Name: ");
+            System.out.print("Enter Name: ");
             String customer = userInput.nextLine().strip();
 
-            System.out.println("Enter your Email: ");
+            System.out.print("Enter your Email: ");
             String email = userInput.nextLine().strip();
 
 
-            System.out.println("Want to Finance (Yes/No): ");
-            try{
+            System.out.print("Want to Finance (Yes/No): ");
+            boolean finance = false;
+            try {
                 String financed = userInput.nextLine().strip();
-                if(financed.equalsIgnoreCase("yes")){
-                    sell.setFinance(true);
+                if (financed.equalsIgnoreCase("yes")) {
+                    finance = true;
                 }
-                else {
-                    sell.setFinance(false);
-                }
-            }catch(Exception e){
-                System.out.println(Colors.RED + "invalid input!"+Colors.RESET);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
-            double total = sell.getTotalPrice();
-            double monthly = sell.getMonthlyPayment();
-            double tax = sell.getSalesTax();
+            double recordFee = SalesContract.recordFee;
+            double processingFee = (vehicleSold.getPrice() < 10000) ? 295.00 : 495.00;
+            double salesTax = vehicleSold.getPrice() * 0.05;
+            double totalPrice = vehicleSold.getPrice() + salesTax + processingFee;
 
-            SalesContract sale = new SalesContract( getCurrentDate(),customer,email,vehicleSold,
-                    total,monthly,tax, sell.getRecordingFee(), sell.getProcessingFee(),sell.isFinance());
+
+            SalesContract sale = new SalesContract(getCurrentDate(), customer, email, vehicleSold,
+                    totalPrice, salesTax, recordFee, processingFee, finance);
+
 
             contractManager.saveContract(sale);
             dealership.removeVehicle(vehicleSold);
@@ -168,16 +168,16 @@ public class UserInterface
         }
     }
 
+
     private void leaseVehicle()
     {
         ContractFileManager contractManager = new ContractFileManager();
-        LeaseContract leased = null;
         int yearMinusThree = getCurrentYearMinusThree();
         processGetAllVehiclesRequest();
 
         while (true)
         {
-            System.out.println("Enter the vin number of the Vehicle you would like to Lease: ");
+            System.out.print("Enter the vin number of the Vehicle you would like to Lease: ");
             int vin = Integer.parseInt(userInput.nextLine().strip());
 
             Vehicle vehicleLeased = null;
@@ -192,28 +192,33 @@ public class UserInterface
                         break;
                     } else
                     {
-                        System.out.println("Sorry this Vehicle can not be Leased. \n Reason: Car is older than 3 years. ");
+                        System.out.println("Sorry this Vehicle can not be Leased. \nReason: Car is older than 3 years. ");
+
                     }
                 }
             }
             if (vehicleLeased == null)
             {
-                System.out.println("Vin number: " + vin + " not found. ");
+                System.out.print("Vin number: " + vin + " not found. \n");
                 continue;
             }
 
-            System.out.println("Enter Name: ");
+            System.out.print("Enter Name: ");
             String customer = userInput.nextLine().strip();
 
-            System.out.println("Enter your Email: ");
+            System.out.print("Enter your Email: ");
             String email = userInput.nextLine().strip();
 
-            LeaseContract leaseContract = new LeaseContract(getCurrentDate(), customer, email, vehicleLeased,
-                    leased.getTotalPrice(), leased.getMonthlyPayment(), leased.getLeaseFee(), leased.getEndingValue());
+            double endingValue = 0.05 * vehicleLeased.getPrice();
+
+            double leaseFee = 0.07 * vehicleLeased.getPrice();
+
+            LeaseContract leaseContract = new LeaseContract(getCurrentDate(), customer, email, vehicleLeased, leaseFee, endingValue);
 
             contractManager.saveContract(leaseContract);
             dealership.removeVehicle(vehicleLeased);
             System.out.println("YAY VEHICLE HAS BEEN LEASED!! ");
+            break;
         }
     }
 
@@ -402,8 +407,8 @@ public class UserInterface
     }
 
     private void displayVehicles(List<Vehicle>vehicles){
-        System.out.println("\nResults:");
-        System.out.println("-".repeat(125));
+
+        System.out.println("\n"+"-".repeat(125));
         System.out.printf("%-15s  %-14s  %-15s  %-15s  %-14s  %-15s  %-13s  %-15s\n",
                 "Vin", "Year", "Make", "Model", "Color", "Type", "Odometer", "Price");
         System.out.println("-".repeat(125));

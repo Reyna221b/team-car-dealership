@@ -7,19 +7,21 @@ public class SalesContract extends Contract
     private double recordingFee = 100.00;
     private double processingFee;
     private boolean finance;
+    public static final double recordFee = 100.0;
 
     // constructor
-    public SalesContract(String date, String customerName, String customerEmail, Vehicle vehicleSold, double totalPrice, double monthlyPayment, double salesTax, double recordingFee, double processingFee, boolean finance) {
-        super(date, customerName, customerEmail, vehicleSold, totalPrice, monthlyPayment);
+    public SalesContract(String date, String customerName, String customerEmail, Vehicle vehicleSold, double totalPrice, double salesTax, double recordingFee, double processingFee, boolean finance) {
+        super(date, customerName, customerEmail, vehicleSold);
         this.salesTax = salesTax;
         this.recordingFee = recordingFee;
         this.processingFee = processingFee;
         this.finance = finance;
+
     }
 
     // getters and setters
     public double getSalesTax() {
-        return salesTax = getVehicleSold().getPrice() * 0.05;
+        return salesTax;
     }
 
     public double getRecordingFee() {
@@ -27,15 +29,7 @@ public class SalesContract extends Contract
     }
 
     public double getProcessingFee() {
-
-        if(getVehicleSold().getPrice() < 10000)
-        {
-            return processingFee = 295.00;
-        }
-        else
-        {
-            return processingFee = 495.00;
-        }
+        return processingFee;
     }
 
     public void setProcessingFee(double processingFee) {
@@ -51,24 +45,27 @@ public class SalesContract extends Contract
     }
 
     @Override
-    public double getTotalPrice()
-    {
-        double price = getVehicleSold().getPrice() + getSalesTax() + getRecordingFee() + getProcessingFee();
-        return price;
+    public double getTotalPrice() {
+        return getVehicleSold().getPrice() + salesTax + recordingFee + processingFee;
     }
 
     @Override
     public double getMonthlyPayment()
     {
-        if(finance)
-        {
-            double interestRate = (getTotalPrice() > 10000) ? 0.0425 : 0.0525;
-            double loanLength = (getTotalPrice() > 10000) ?  48 : 24;
-            return (getTotalPrice() * interestRate * (Math.pow(1 + interestRate, loanLength)) / (Math.pow(1 + interestRate, loanLength) - 1));
+        if (finance) {
+
+            double monthlyInterestRate = (getTotalPrice() > 10000) ? 0.0425 : 0.0525;
+
+            int loanLength = (getTotalPrice() > 10000) ? 48 : 24;
+
+            double monthlyPayment = getTotalPrice() * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanLength)
+                    / (Math.pow(1 + monthlyInterestRate, loanLength) - 1);
+            return monthlyPayment;
         }
-        else{
+        else {
             return 0;
         }
     }
+
 
 }

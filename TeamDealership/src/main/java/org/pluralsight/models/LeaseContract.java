@@ -4,13 +4,14 @@ public class LeaseContract extends Contract
 {
     private double endingValue;
     private double leaseFee;
-    private double price = getVehicleSold().getPrice();
+    private final double price = getVehicleSold().getPrice();
 
-    public LeaseContract(String date, String customerName, String customerEmail, Vehicle vehicleSold, double totalPrice, double monthlyPayment, double leaseFee, double endingValue)
+    public LeaseContract(String date, String customerName, String customerEmail, Vehicle vehicleSold, double leaseFee, double endingValue)
     {
-        super(date, customerName, customerEmail, vehicleSold, totalPrice, monthlyPayment);
+        super(date, customerName, customerEmail, vehicleSold);
         this.leaseFee = leaseFee;
         this.endingValue = endingValue;
+
     }
 
     public double getEndingValue()
@@ -35,7 +36,7 @@ public class LeaseContract extends Contract
     @Override
     public double getTotalPrice()
     {
-        return (price-getEndingValue()) + getLeaseFee();
+        return (price -getEndingValue()) + getLeaseFee();
     }
 
     @Override

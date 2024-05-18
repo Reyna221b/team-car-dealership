@@ -36,14 +36,19 @@ public class LeaseContract extends Contract
     @Override
     public double getTotalPrice()
     {
-        return (price -getEndingValue()) + getLeaseFee();
+        return (price -getEndingValue()) + getLeaseFee() + getMonthlyPayment();
     }
 
     @Override
     public double getMonthlyPayment()
     {
-        double interestRate = 0.04;
-        double loanLength = 36;
-        return (getTotalPrice() * interestRate * (Math.pow(1 + interestRate, loanLength)) / (Math.pow(1 + interestRate, loanLength) - 1));
+        double interestRate = 0.04; // monthly interest rate
+        int loanLengthMonths = 36; // loan length in months
+        double totalPrice = getTotalPrice();
+
+        // Monthly payment calculation using mortgage formula
+        double monthlyPayment = totalPrice * interestRate * Math.pow(1 + interestRate, loanLengthMonths) / (Math.pow(1 + interestRate, loanLengthMonths) - 1);
+
+        return monthlyPayment;
     }
 }

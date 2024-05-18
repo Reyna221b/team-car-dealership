@@ -410,7 +410,7 @@ public class UserInterface
 
         System.out.println("\n"+"-".repeat(125));
         System.out.printf("%-15s  %-14s  %-15s  %-15s  %-14s  %-15s  %-13s  %-15s\n",
-                "Vin", "Year", "Make", "Model", "Color", "Type", "Odometer", "Price");
+                "Vin", "Year", "Make", "Model", "Type", "Color", "Odometer", "Price");
         System.out.println("-".repeat(125));
         if(vehicles.isEmpty()){
             System.out.println("Sorry no matches found!");

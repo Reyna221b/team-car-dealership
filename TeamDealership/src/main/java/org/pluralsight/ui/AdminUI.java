@@ -72,27 +72,27 @@ public class AdminUI
 
                 switch (choice) {
                     case 1:
-                        AdminLogger.logMessage("Admin Menu- ","Displayed all contracts");
+                        AdminLogger.logMessage("Admin Menu","Displayed all contracts");
                         displayAllContracts();
                         break;
                     case 2:
                         displaySalesContracts(allContracts);
-                        AdminLogger.logMessage("Admin Menu- ","Displayed all Sales contracts");
+                        AdminLogger.logMessage("Admin Menu","Displayed all Sales contracts");
                         break;
                     case 3:
                         displayLeaseContracts(allContracts);
-                        AdminLogger.logMessage("Admin Menu- ","Displayed all Leased contracts");
+                        AdminLogger.logMessage("Admin Menu","Displayed all Leased contracts");
                         break;
                     case 4:
                         listFirst5Contracts(allContracts);
-                        AdminLogger.logMessage("Admin Menu- ","Displayed first 5 contracts");
+                        AdminLogger.logMessage("Admin Menu","Displayed first 5 contracts");
                         break;
                     case 5:
-                        AdminLogger.logMessage("Admin Menu- ","Displayed Last 10 contracts");
+                        AdminLogger.logMessage("Admin Menu","Displayed Last 10 contracts");
                         listLast10Contract(allContracts);
                         break;
                     case 6:
-                        AdminLogger.logMessage("Leaving Admin Menu- ","exited Admin menu");
+                        AdminLogger.logMessage("Leaving Admin Menu","exited Admin menu");
                         System.out.println("\nBack to Home Screen!");
                         exitAdminMenu = true;
                         return;

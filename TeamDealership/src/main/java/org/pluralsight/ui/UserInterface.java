@@ -22,27 +22,28 @@ public class UserInterface
 
     public void display(){
         init();
+
+        System.out.println(Colors.CYAN);
+        // let the user know what type of app they are about to use
+        System.out.println();
+        System.out.println("Car dealership loading...  \uD83D\uDE97\uD83D\uDCA8");
+
+        // prompt the user for their first name for a more personalized experience
+        System.out.println();
+        System.out.println("Enter your first name to log in: ");
+        String userName = userInput.nextLine().trim().toUpperCase();
+
+        // greet the user
+        System.out.println(Colors.CYAN);
+        System.out.println("_".repeat(65));
+        System.out.println();
+        System.out.println("                           Hi, " + userName + " \uD83D\uDC4B");
+        System.out.println("              Welcome to \uD83D\uDC51 Queen's Motors! \uD83D\uDE99\uD83D\uDCA8");
+        System.out.println();
+        System.out.println("_".repeat(65));
         while (true)
         {
             try{
-                System.out.println(Colors.CYAN);
-                // let the user know what type of app they are about to use
-                System.out.println();
-                System.out.println("Car dealership loading...  \uD83D\uDE97\uD83D\uDCA8");
-
-                // prompt the user for their first name for a more personalized experience
-                System.out.println();
-                System.out.println("Enter your first name to log in: ");
-                String userName = userInput.nextLine().trim().toUpperCase();
-
-                // greet the user
-                System.out.println(Colors.CYAN);
-                System.out.println("_".repeat(65));
-                System.out.println();
-                System.out.println("                           Hi, " + userName + " \uD83D\uDC4B");
-                System.out.println("              Welcome to \uD83D\uDC51 Queen's Motors! \uD83D\uDE99\uD83D\uDCA8");
-                System.out.println();
-                System.out.println("_".repeat(65));
 
                 System.out.println();
                 System.out.println("\t\t                  Home Screen");

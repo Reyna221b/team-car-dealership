@@ -13,9 +13,12 @@ When the user inputs a sale or a lease, the application will be able to:
 ~ Workbook 5 Car Dealership V2.0
 
 # Screens
-When you initially run the code, the terminal displays a message to the user letting them know what type of application they are about to use. To make the user experience a bit more personalized, the application asks the user to enter their name:
+When you initially run the code, the terminal displays a message to the user letting them know what type of application they are about to use. To make the user experience a bit more personalized, the application starts with asking the user to enter their name:
+
+![Screenshot 2024-05-19 at 6 11 04 PM](https://github.com/Reyna221b/team-car-dealership/assets/99916123/1d29a4ca-e9f7-4b42-99de-1ec86772895f)
 
 
+# Greeting / Menu Screen
+The user is then greeted by their name, followed by a display of the Menu screen and the different screen options you can navigate into. The user can input a number from 1 - 10 & 99 to make a selection to go into a next page as shown below:
 
-
-
+![Screenshot 2024-05-19 at 6 17 12 PM](https://github.com/Reyna221b/team-car-dealership/assets/99916123/5db5a307-5a5a-478b-a0b8-4db893c59de0)

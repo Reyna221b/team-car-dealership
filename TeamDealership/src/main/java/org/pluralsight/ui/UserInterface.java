@@ -121,6 +121,8 @@ public class UserInterface
 
         System.out.println("[1] - Sell a Vehicle");
         System.out.println("[2] - Lease a Vehicle");
+        System.out.println();
+        System.out.println("Enter your choice: ");
         int choice = Integer.parseInt(userInput.nextLine().strip());
 
         switch (choice)

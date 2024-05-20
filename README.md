@@ -31,8 +31,9 @@ Option 1 will display the current vehicle inventory to the user, followed by a p
 
 ![Screenshot 2024-05-19 at 6 47 10 PM](https://github.com/Reyna221b/team-car-dealership/assets/99916123/353a9b1b-84ff-4489-b3b9-87639801e2e4)
 
-Option 2 will ////// left off here **************************
+Option 2 will display the current vehicle inventory to the user, followed by a prompt telling the user to enter the information  about the vehicle they want to lease:
 
+<img width="476" alt="Screenshot 2024-05-20 at 10 10 10 AM" src="https://github.com/Reyna221b/team-car-dealership/assets/99916123/25b3b8c9-9a72-4218-87fd-ba12abe07ede">
 
 # Input Errors!
 In the case the user enters an input that is invalid, the application will throw an error message as shown below:

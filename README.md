@@ -40,4 +40,31 @@ In the case the user enters an input that is invalid, the application will throw
 ![Screenshot 2024-05-19 at 7 14 16 PM](https://github.com/Reyna221b/team-car-dealership/assets/99916123/b002ec87-d07a-4bfb-a262-5831afe497a1)
 
 # Interesting Piece of the Code
+one interesting piece of code we added was the Admin UI and Admin Logger. The admin ui can only be displayed if the user enters the correct password! Otherwise they can't view the sensitive information. If they did get the password then everything they do is recorded in the Admin Logger and they are able to view the contract information.
 
+```java
+ public void adminLogin(){
+        boolean isNotLoggedIn = true;
+
+        while(isNotLoggedIn){
+
+            System.out.print("\nPlease Enter Admin Password: ");
+            String password = userInput.nextLine().strip();
+            AdminLogger.logMessage("Admin selected","Entering password");
+
+            if (password.equalsIgnoreCase("X")) {
+                System.out.println("Exiting...");
+                AdminLogger.logMessage("Admin selected","pressed X to Exit");
+                break;
+            } else if (password.equals(adminPassword)) {
+                AdminLogger.logMessage("Admin selected","Entered correct Password");
+                System.out.println();
+                adminDisplayMenu();
+                isNotLoggedIn = false;
+            } else {
+                System.out.println("Incorrect Password: try again. Or press X to exit: ");
+                AdminLogger.logMessage("Admin selected","Entered Incorrect Password");
+            }
+        }
+    }
+```

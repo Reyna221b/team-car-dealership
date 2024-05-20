@@ -17,7 +17,8 @@ When you initially run the code, the console displays a message to the user lett
 
 ![Screenshot 2024-05-19 at 6 19 29 PM](https://github.com/Reyna221b/team-car-dealership/assets/99916123/97ae3180-0028-43fc-bced-761f1fb17adc)
 
-# Greeting / Menu Screen
+# Greeting / Home Screen
 The user is then greeted by their name, followed by a display of the Menu screen and the different screen options you can navigate into. The user can input a number from 1 - 10 & 99 to make a selection to go into a next page as shown below:
 
 ![Screenshot 2024-05-19 at 6 17 12 PM](https://github.com/Reyna221b/team-car-dealership/assets/99916123/5db5a307-5a5a-478b-a0b8-4db893c59de0)
+

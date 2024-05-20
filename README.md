@@ -10,7 +10,23 @@ When the user inputs a sale or a lease, the application will be able to:
 - Ask the user if the transaction is a Sale or a Lease
 - Calculate the pricing
 
-~Workbook 5 Car Dealership V2.0
+~ Workbook 5 Car Dealership V2.0
 
+# Screens
+When you initially run the code, the console displays a message to the user letting them know what type of application they are about to use. To make the user experience a bit more personalized, the application starts with asking the user to enter their name:
 
+![Screenshot 2024-05-19 at 6 19 29 PM](https://github.com/Reyna221b/team-car-dealership/assets/99916123/97ae3180-0028-43fc-bced-761f1fb17adc)
 
+# Greeting / Home Screen
+The user is then greeted by their name, followed by a display of the Menu screen and the different screen options you can navigate into. The user can input a number from 1 - 10 & 99 to make a selection to go into a next page as shown below:
+
+![Screenshot 2024-05-19 at 6 17 12 PM](https://github.com/Reyna221b/team-car-dealership/assets/99916123/5db5a307-5a5a-478b-a0b8-4db893c59de0)
+
+# Sell or Lease Screen
+The user is prompted with two choices to choose from:
+
+![Screenshot 2024-05-19 at 6 42 13 PM](https://github.com/Reyna221b/team-car-dealership/assets/99916123/71ed2c08-78d6-45b6-b2df-83798d6ab39c)
+
+Option 1 will display the current vehicle inventory to the user, followed by a question prompting the user to enter information about the vehicle they want to sell:
+
+![Screenshot 2024-05-19 at 6 47 10 PM](https://github.com/Reyna221b/team-car-dealership/assets/99916123/353a9b1b-84ff-4489-b3b9-87639801e2e4)

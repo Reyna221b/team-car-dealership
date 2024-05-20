@@ -30,3 +30,14 @@ The user is prompted with two choices to choose from:
 Option 1 will display the current vehicle inventory to the user, followed by a question prompting the user to enter information about the vehicle they want to sell:
 
 ![Screenshot 2024-05-19 at 6 47 10 PM](https://github.com/Reyna221b/team-car-dealership/assets/99916123/353a9b1b-84ff-4489-b3b9-87639801e2e4)
+
+Option 2 will ////// left off here **************************
+
+
+# Input Errors!
+In the case the user enters an input that is invalid, the application will throw an error message as shown below:
+
+![Screenshot 2024-05-19 at 7 14 16 PM](https://github.com/Reyna221b/team-car-dealership/assets/99916123/b002ec87-d07a-4bfb-a262-5831afe497a1)
+
+# Interesting Piece of the Code
+

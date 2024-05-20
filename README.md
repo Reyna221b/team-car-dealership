@@ -22,3 +22,11 @@ The user is then greeted by their name, followed by a display of the Menu screen
 
 ![Screenshot 2024-05-19 at 6 17 12 PM](https://github.com/Reyna221b/team-car-dealership/assets/99916123/5db5a307-5a5a-478b-a0b8-4db893c59de0)
 
+# Sell or Lease Screen
+The user is prompted with two choices to choose from:
+
+![Screenshot 2024-05-19 at 6 42 13 PM](https://github.com/Reyna221b/team-car-dealership/assets/99916123/71ed2c08-78d6-45b6-b2df-83798d6ab39c)
+
+Option 1 will display the current vehicle inventory to the user, followed by a question prompting the user to enter information about the vehicle they want to sell:
+
+![Screenshot 2024-05-19 at 6 47 10 PM](https://github.com/Reyna221b/team-car-dealership/assets/99916123/353a9b1b-84ff-4489-b3b9-87639801e2e4)

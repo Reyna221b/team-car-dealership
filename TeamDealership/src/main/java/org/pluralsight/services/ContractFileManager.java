@@ -25,16 +25,7 @@ public class ContractFileManager
                 String date = fields[1];
                 String customerName = fields[2];
                 String customerEmail = fields[3];
-                int vin = Integer.parseInt(fields[4]);
-                int year = Integer.parseInt(fields[5]);
-                String make = fields[6];
-                String model = fields[7];
-                String vehicleType = fields[8];
-                String color = fields[9];
-                int odometer = Integer.parseInt(fields[10]);
-                double price = Double.parseDouble(fields[11]);
-
-                Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+                Vehicle vehicle = getVehicle(fields);
 
                 if (contractType.equals("LEASE")) {
                     double leaseFee = Double.parseDouble(fields[12]);
@@ -56,6 +47,20 @@ public class ContractFileManager
         return contracts;
     }
 
+    private static Vehicle getVehicle(String[] fields)
+    {
+        int vin = Integer.parseInt(fields[4]);
+        int year = Integer.parseInt(fields[5]);
+        String make = fields[6];
+        String model = fields[7];
+        String vehicleType = fields[8];
+        String color = fields[9];
+        int odometer = Integer.parseInt(fields[10]);
+        double price = Double.parseDouble(fields[11]);
+
+        Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+        return vehicle;
+    }
 
 
     public void saveContract(Contract contract){

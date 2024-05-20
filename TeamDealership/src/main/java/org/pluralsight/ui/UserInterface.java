@@ -18,6 +18,7 @@ public class UserInterface
     public DealershipFileManager fileManager;
     public List<Vehicle> vehicleList;
     public Vehicle vehicle;
+    public AdminUI admin = new AdminUI();
 
     public void display(){
         init();
@@ -59,6 +60,7 @@ public class UserInterface
                 System.out.println("[8] - Add a Vehicle");
                 System.out.println("[9] - Remove a Vehicle");
                 System.out.println("[10] - Sell / Lease a Vehicle");
+                System.out.println("[11] - Admin Menu");
                 System.out.println(Colors.RED + "[99] - Quit"+ Colors.RESET);
                 System.out.println();
                 System.out.println(Colors.CYAN+ "-".repeat(65));
@@ -96,6 +98,9 @@ public class UserInterface
                         break;
                     case 10:
                         sellOrLeaseOption();
+                        break;
+                    case 11:
+                        admin.adminLogin();
                         break;
                     case 99:
                         System.out.println();

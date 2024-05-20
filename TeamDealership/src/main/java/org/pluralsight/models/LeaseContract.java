@@ -36,7 +36,7 @@ public class LeaseContract extends Contract
     @Override
     public double getTotalPrice()
     {
-        return (price -getEndingValue()) + getLeaseFee() + getMonthlyPayment();
+        return (price - getEndingValue()) + getLeaseFee() ;
     }
 
     @Override
@@ -44,11 +44,22 @@ public class LeaseContract extends Contract
     {
         double interestRate = 0.04; // monthly interest rate
         int loanLengthMonths = 36; // loan length in months
-        double totalPrice = getTotalPrice();
+
 
         // Monthly payment calculation using mortgage formula
-        double monthlyPayment = totalPrice * interestRate * Math.pow(1 + interestRate, loanLengthMonths) / (Math.pow(1 + interestRate, loanLengthMonths) - 1);
+        double monthlyPayment = getTotalPrice() * interestRate * Math.pow(1 + interestRate, loanLengthMonths) / (Math.pow(1 + interestRate, loanLengthMonths) - 1);
 
         return monthlyPayment;
     }
+
+    public String toString() {
+        return String.format("%-15s %-15s  %-20s %-35s  %-15d  %-15d %-15s  %-15s %-15s %-15s %-15s \t%-10.2f \t\t%.2f\t \t%.2f ",
+                "LEASED",getDate(), getCustomerName(), getCustomerEmail(),
+                getVehicleSold().getVin(), getVehicleSold().getYear(),
+                getVehicleSold().getMake(), getVehicleSold().getModel(),
+                getVehicleSold().getVehicleType(), getVehicleSold().getColor(),
+                getVehicleSold().getOdometer(), getVehicleSold().getPrice(),
+                leaseFee, endingValue);
+    }
 }
+

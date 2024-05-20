@@ -4,7 +4,7 @@ public class SalesContract extends Contract
 {
     // variables
     private double salesTax;
-    private double recordingFee = 100.00;
+    private double recordingFee;
     private double processingFee;
     private boolean finance;
     public static final double recordFee = 100.0;
@@ -65,4 +65,21 @@ public class SalesContract extends Contract
             return 0;
         }
     }
+    public String toString() {
+        String financed;
+        if(finance){
+         financed = "YES";
+        }
+        else {
+            financed = "NO";
+        }
+        return String.format("%-15s %-15s  %-20s %-35s  %-15d  %-15d %-15s  %-15s %-15s %-15s %-15s \t%-10.2f\t \t%.2f \t\t\t%.2f\t \t%.2f\t %-15s ",
+                "SALE",getDate(), getCustomerName(), getCustomerEmail(),
+                getVehicleSold().getVin(), getVehicleSold().getYear(),
+                getVehicleSold().getMake(), getVehicleSold().getModel(),
+                getVehicleSold().getVehicleType(), getVehicleSold().getColor(),
+                getVehicleSold().getOdometer(), getVehicleSold().getPrice(),
+                salesTax, recordingFee, processingFee, financed);
+    }
+
 }

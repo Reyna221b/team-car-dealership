@@ -10,7 +10,12 @@ When the user inputs a sale or a lease, the application will be able to:
 - Ask the user if the transaction is a Sale or a Lease
 - Calculate the pricing
 
-~Workbook 5 Car Dealership V2.0
+~ Workbook 5 Car Dealership V2.0
+
+# Screens
+When you initially run the code, the terminal displays a message to the user letting them know what type of application they are about to use. To make the user experience a bit more personalized, the application asks the user to enter their name:
+
+
 
 
 
